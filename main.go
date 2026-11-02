@@ -46,7 +46,7 @@ func main() {
 			moves = append(moves, canTake)
 			break
 		}
-		fmt.Printf("%s's move\nYou can take %d matches (%d total): ", players[playerIdx], canTake, matches)
+		fmt.Printf("%s's move\nYou can take %d matches (%d left): ", players[playerIdx], canTake, matches)
 		move := ioHandler.getMove()
 		for (move <= 0) || (move > canTake) {
 			fmt.Printf("\nInput correct number of matches, you can max take %d: ", canTake)
