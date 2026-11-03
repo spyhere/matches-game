@@ -24,7 +24,7 @@ P2 wins!
 
 const (
 	minMatches = 11
-	maxMatches = 20
+	maxMatches = 30
 	computer   = "Computer"
 )
 
