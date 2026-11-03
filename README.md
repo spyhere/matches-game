@@ -13,8 +13,8 @@ Player who had the last move wins.
 
 At the end program should show the history of moves and display who has won.
 
-```
 For example:
+```
 Given 11 matches.
 Moves: [4, 7]
 Player2 wins!
@@ -24,7 +24,7 @@ Player2 wins!
 
 1. Clone the repo
 2. Make sure you have Go toolchain installed, if you don't have it then check out [this](https://go.dev/doc/install)
-3. go run . to run the application
+3. `go run .` to run the application
 
 ### Example:
 ```
