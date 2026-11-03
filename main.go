@@ -6,22 +6,6 @@ import (
 	"time"
 )
 
-/*
-Matches Game
-2 Players
-
-Given N amount of matches, first player is grabbing as much as he wants, but not all of them. The next player
-can grab <= then (previous player grabbed * 2). They continue grabbing matches until all matches have been taken.
-Player who grabbed the last match has won.
-
-At the end program should show the history of moves and display who has won.
-
-For example:
-Given 11 matches.
-Moves: [4, 7]
-P2 wins!
-*/
-
 const (
 	minMatches = 11
 	maxMatches = 30
