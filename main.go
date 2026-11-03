@@ -10,7 +10,7 @@ Matches Game
 2 Players
 
 Given N amount of matches, first player is grabbing as much as he wants, but not all of them. The next player
-can grab < then (previous player grabbed * 2). They continue grabbing matches until all matches have been taken.
+can grab <= then (previous player grabbed * 2). They continue grabbing matches until all matches have been taken.
 Player who grabbed the last match has won.
 
 At the end program should show the history of moves and display who has won.
@@ -41,7 +41,7 @@ func main() {
 	playerIdx := 0
 	prevMove := matches
 	for {
-		canTake := min(prevMove*2-1, min(matches, initMatches-1))
+		canTake := min(prevMove*2, min(matches, initMatches-1))
 		if canTake == matches {
 			moves = append(moves, canTake)
 			break
