@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"time"
 )
 
 /*
@@ -24,19 +25,20 @@ P2 wins!
 const (
 	minMatches = 11
 	maxMatches = 20
+	computer   = "Computer"
 )
 
 func main() {
 	var players []string
 	ioHandler := newIOHandler()
 
-	fmt.Print("Enter first player's name: ")
-	players = append(players, ioHandler.getUserName())
-	fmt.Print("Enter second player's name: ")
-	players = append(players, ioHandler.getUserName())
+	fmt.Print("Enter your name: ")
+	players = append(players, ioHandler.getUserName(), computer)
 
 	var moves []int
 	initMatches := max(rand.Intn(maxMatches), minMatches)
+	bot := newBot(initMatches)
+
 	matches := initMatches
 	playerIdx := 0
 	prevMove := matches
@@ -46,10 +48,17 @@ func main() {
 			moves = append(moves, canTake)
 			break
 		}
-		fmt.Printf("%s's move\nYou can take %d matches (%d left): ", players[playerIdx], canTake, matches)
-		move := ioHandler.getMove()
+		var move int
+		if players[playerIdx] == computer {
+			move = min(bot.getMove(matches), canTake)
+			fmt.Printf("Available %d matches (%d left). ...Computer grabs %d\n", canTake, matches, move)
+			time.Sleep(time.Second * 1)
+		} else {
+			fmt.Printf("Available %d matches (%d left). Your move: ", canTake, matches)
+			move = ioHandler.getMove()
+		}
 		for (move <= 0) || (move > canTake) {
-			fmt.Printf("\nInput correct number of matches, you can max take %d: ", canTake)
+			fmt.Printf("\nInput correct number of matches, you can take from %d to %d: ", 1, canTake)
 			move = ioHandler.getMove()
 		}
 		matches -= move
@@ -62,7 +71,7 @@ func main() {
 		playerIdx = (playerIdx + 1) % len(players)
 	}
 
-	fmt.Printf("\nGame over\nPlayer %s has won!\n", players[playerIdx])
+	fmt.Printf("\nGame over\n%s has won!\n", players[playerIdx])
 	fmt.Printf("Initial amount of matches: %d\n", initMatches)
 	printMoves(players, initMatches, moves)
 }
