@@ -35,8 +35,15 @@ func main() {
 	fmt.Print("Enter your name: ")
 	players = append(players, ioHandler.getUserName(), computer)
 
-	var moves []int
+	fmt.Println("Shuffle...")
+	rand.Shuffle(2, func(i, j int) {
+		players[i], players[j] = players[j], players[i]
+	})
+	time.Sleep(time.Second)
 	initMatches := max(rand.Intn(maxMatches), minMatches)
+	fmt.Printf("%d matches for this game. First move goes to %s\n", initMatches, players[0])
+
+	var moves []int
 	bot := newBot(initMatches)
 
 	matches := initMatches
@@ -52,7 +59,7 @@ func main() {
 		if players[playerIdx] == computer {
 			move = min(bot.getMove(matches), canTake)
 			fmt.Printf("Available %d matches (%d left). ...Computer grabs %d\n", canTake, matches, move)
-			time.Sleep(time.Second * 1)
+			time.Sleep(time.Second)
 		} else {
 			fmt.Printf("Available %d matches (%d left). Your move: ", canTake, matches)
 			move = ioHandler.getMove()
