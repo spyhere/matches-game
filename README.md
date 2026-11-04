@@ -1,5 +1,7 @@
 # Matches-Game
 
+[Solution in C](https://github.com/spyhere/matches-game-c)
+
 ## Description
 
 The solution written in Go programming language for a task from [this lecture](https://www.youtube.com/watch?v=qaCsf7wOpRQ&t=4826s).
